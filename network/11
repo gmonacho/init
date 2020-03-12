@@ -1,0 +1,2 @@
+traceroute slash16.org
+10.60.1.1 (10.60.1.1)  0.259 ms  0.196 ms  0.191 ms : Lien entre le reseau local et l'exterieur car juste après ce chemin on quitte le reseau local (adresse commencant par 10.)

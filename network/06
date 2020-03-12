@@ -1,0 +1,1 @@
+commande : cat /etc/resolv.conf

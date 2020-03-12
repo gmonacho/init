@@ -1,0 +1,2 @@
+la commande ssh username@localhost permet de se connecter en tant que nouvelle utilisateur
+Si la Vm est creer en session graphique, alors le nouvelle utilisateur se connectera egalement en session graphique

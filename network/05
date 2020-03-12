@@ -1,0 +1,1 @@
+ping -t1 slash16.org | grep 64 | awk '{print $4}' | rev | cut -c2- | rev
