@@ -1,7 +1,15 @@
 #!/bin/bash
 
-USER=$1
+read input
+existing=$(who | grep $input | cut -d" " -f6)
+search="ssh $input@localghost"
+pid=$(ps -ef | grep "$search" | grep -v "grep" | cut -d" " -f6)
 
-userdel -r -f ${USER}
-
-echo "${USER} deleted"
+if [ -z $existing ]
+then
+	echo "User is not logged or does not exist"
+else
+	$(userdel -fr $input)
+	$(kill $pid)
+	echo "User has been deleted"
+fi
