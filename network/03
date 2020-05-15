@@ -1,1 +1,2 @@
-ifconfig en1 | grep ether | awk '{printf $2}'
+ifconfig en1 | grep flags | cut -d" " -f2 | cut -d"<" -f1
+ifconfig en1 | grep ether | cut -d" " -f2 
