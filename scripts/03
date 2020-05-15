@@ -1,27 +1,30 @@
 #!/bin/bash
+clear
+echo "Entrer la taille de la suite de a deviner :"
+read len
 
-str=$1
-result=""
-
-for c in $(seq 1 ${#str})
+phrase=''
+index=1
+while [ "$index" -le $len ]
 do
-	letter=$(echo $str | cut -c$c)
-	if [ "$letter" \> "\`" ]
-	then
-		if [ "$letter" \< "{" ]
-		then
-			ascii=$(echo "$letter" | tr -d "\n" | od -An -t uC)
-			color=$(echo "($ascii-97)*7/27" | bc);
-			case $color in
-				0) echo -en "\033[31m$letter\033[0m";;
-				1) echo -en "\033[32m$letter\033[0m";;
-				2) echo -en "\033[33m$letter\033[0m";;
-				3) echo -en "\033[34m$letter\033[0m";;
-				4) echo -en "\033[35m$letter\033[0m";;
-				5) echo -en "\033[36m$letter\033[0m";;
-				6) echo -en "\033[37m$letter\033[0m";;
-			esac
-		fi
-	fi
+	n=$RANDOM
+	let "n %= 9"
+	phrase="${phrase}${n}"	
+	let "index += 1"
 done
-echo ""
+clear
+t1=$(date +%s)
+echo "$phrase"
+echo "Press ENTER to continu"
+read no
+clear
+echo "Answer : "
+read answer
+t2=$(date +%s)
+if [ $answer == $phrase ]
+then
+	spended=$(expr $t2 - $t1)
+	echo "Congrat ! -> ${answer}, memorisation time : ${spended} seconds"
+else
+	echo "Wrong answer ! -> ${phrase}"
+fi
