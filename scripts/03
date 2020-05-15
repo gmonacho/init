@@ -16,11 +16,11 @@ clear
 t1=$(date +%s)
 echo "$phrase"
 echo "Press ENTER to continu"
+t2=$(date +%s)
 read no
 clear
 echo "Answer : "
 read answer
-t2=$(date +%s)
 if [ $answer == $phrase ]
 then
 	spended=$(expr $t2 - $t1)
