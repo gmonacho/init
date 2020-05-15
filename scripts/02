@@ -1,14 +1,13 @@
 #!/bin/bash
 
 existing=$(who | grep $1 | cut -d" " -f1)
-search="ssh $1@localhost"
-pid=$(ps -ef | grep "$search" | grep -v "grep" | cut -d" " -f8)
-
+pid=$(ps -ef | grep "ssh" | grep $1 | awk '{print $2}')
+echo "pid = $pid"
 if [ -z $existing ]
 then
 	echo "User is not logged or does not exist"
 else
 	$(sudo userdel -fr $1)
-	$(kill $pid)
+	$(sudo kill $pid)
 	echo "User has been deleted"
 fi
